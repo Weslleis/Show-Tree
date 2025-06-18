@@ -140,5 +140,11 @@ Sinta-se à vontade para ajustar a função ou melhorar o suporte a padrões. Su
 
 ## 📄 Licença
 
-Este script é de uso livre. Personalize, reutilize e distribua como desejar.
+Este projeto está licenciado sob a **GNU General Public License v3.0 (GPLv3)**.
+
+Você pode encontrar o texto completo da licença no arquivo [`LICENSE`](./LICENSE) na raiz deste repositório.
+
+Para mais detalhes sobre a GPLv3, visite: [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
+
+---
 
