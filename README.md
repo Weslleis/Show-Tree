@@ -40,23 +40,6 @@
 
 ---
 
-## 🛠️ Como Usar
-
-Dentro de qualquer pasta do seu projeto, execute:
-
-```powershell
-Show-Tree
-```
-- Mostra a estrutura de arquivos e pastas a partir do diretório atual.
-- Respeita as regras do arquivo `.treeignore` se existir na raiz do projeto.
----
-Para salvar a árvore diretamente no `README.md` com blocos de código formatados:
-
-```powershell
-'```' | Out-File README.md; Show-Tree >> README.md; '```' >> README.md
-```
-
----
 
 ## 🛠️ 📄  Suporte a Arquivo `.treeignore`
 
@@ -76,7 +59,7 @@ database.db
 README.md
 
 # Usando wildcards
-*.log              # Todos os arquivos .log
+*.log                # Todos os arquivos .log
 static/img/**/*.jpg  # Todos os .jpg dentro de static/img e subpastas
 ```
 
@@ -84,8 +67,6 @@ static/img/**/*.jpg  # Todos os .jpg dentro de static/img e subpastas
 
 ## 🔎 Suporte a Wildcards, Padrões de Ignore (.treeignore)
 
-
-Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para ignorar arquivos e pastas no comando `Show-Tree`:
 
 Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para ignorar arquivos e pastas no comando `Show-Tree`:
 
@@ -108,6 +89,19 @@ Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para igno
 ---
 
 ## 📂 Exemplo de Saída
+
+Sem `.treeignore` apenas o comado `ls -1`:
+```
+ls -1
+```
+```
+app.py
+models.py
+README.md
+requirements.txt
+static
+templates
+```
 
 Com `.treeignore` corretamente configurado:
 
@@ -132,6 +126,22 @@ Com `.treeignore` corretamente configurado:
 
 ---
 
+## 🛠️ Como Usar
+
+1. **Abra seu PowerShell:** Dentro de qualquer pasta do seu projeto, execute:
+
+```powershell
+Show-Tree
+```
+- Mostra a estrutura de arquivos e pastas a partir do diretório atual.
+- Respeita as regras do arquivo `.treeignore` se existir na raiz do projeto.
+---
+Para salvar a árvore diretamente no `README.md` com blocos de código formatados:
+
+```powershell
+'```' | Out-File README.md; Show-Tree >> README.md; '```' >> README.md
+```
+
 ## 🤝 Contribuições
 
 Sinta-se à vontade para ajustar a função ou melhorar o suporte a padrões. Sugestões de melhorias são bem-vindas!
@@ -147,4 +157,3 @@ Você pode encontrar o texto completo da licença no arquivo [`LICENSE`](./LICEN
 Para mais detalhes sobre a GPLv3, visite: [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ---
-
