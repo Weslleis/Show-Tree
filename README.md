@@ -90,11 +90,13 @@ Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para igno
 
 ## 📂 Exemplo de Saída
 
-Sem `.treeignore` apenas o comado `ls -1`:
+Sem `.treeignore` apenas o comado `ls -1AfA`:
 ```
-ls -1
+ls -1AfA
 ```
 ```
+.git
+.treeignore
 app.py
 models.py
 README.md
