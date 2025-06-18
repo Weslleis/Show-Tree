@@ -88,8 +88,32 @@ Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para igno
 
 ---
 
+### 🔹 Modelo ultilizado `.treeignore`
+
+```
+.treeignore
+*.git
+__pycache__
+database.db
+.DS_Store
+README.md
+```
+
 ## 📂 Exemplo de Saída
 
+
+
+---
+
+## Observações
+
+> **PS:** Os comandos apresentados são executados no terminal Linux dentro do `WSL` (Windows Subsystem for Linux) via PowerShell no Windows.
+
+> 🗂️ **Importante:** Esses comandos servem apenas para **organizar e visualizar a estrutura de arquivos e pastas no terminal**, dando ao usuário uma noção do que está sendo manipulado.
+
+> ⚙️ A funcionalidade principal e os objetivos de organização e exibição são realizados pela aplicação **Show-Tree**, executada no PowerShell. Os comandos mostrados aqui são apenas auxiliares para facilitar a visualização.
+
+## Com WLS ou bash
 Sem `.treeignore` apenas o comado `ls -1AfA`:
 ```
 ls -1AfA
@@ -104,7 +128,7 @@ requirements.txt
 static
 templates
 ```
-
+## Com PowerShell
 Com `.treeignore` corretamente configurado:
 
 ```
