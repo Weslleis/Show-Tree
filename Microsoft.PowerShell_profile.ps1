@@ -32,6 +32,12 @@ function Show-Tree {
         $Ignore = Get-Content ".treeignore" | Where-Object { $_ -and ($_ -notmatch '^\s*#') }
     }
 
+    # Exibe a pasta raiz apenas na chamada inicial
+    if ($Indent -eq "") {
+        $rootName = Split-Path -Path (Resolve-Path $Path).Path -Leaf
+        Write-Output "$rootName/"
+    }
+
     # Obtém todos os itens, aplica filtro e separa arquivos e pastas
     $items = Get-ChildItem -LiteralPath $Path -Force |
         Where-Object {
