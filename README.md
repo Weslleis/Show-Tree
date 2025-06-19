@@ -4,6 +4,9 @@
 
 ---
 
+
+teste .gitgnore
+
 ## ✅ Funcionalidades
 
 - 📂 Visualização hierárquica da estrutura de arquivos e pastas
