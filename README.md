@@ -9,11 +9,15 @@
 - 📂 Visualização hierárquica da estrutura de arquivos e pastas
 - 🔍 Leitura automática de um arquivo `.treeignore` para ignorar itens
 - ⚙️ Fácil integração com seu perfil do PowerShell (`Microsoft.PowerShell_profile.ps1`)
-- 📄 Suporte a **`.treeignore`** para exclusão de arquivos/diretórios da visualização
--- ✨ Suporte a *wildcards* no `.treeignore`
+- 📄 Suporte a **`.treeignore`** para exclusão de arquivos/diretórios da visualização  
+  -- ✨ Suporte a *wildcards* no `.treeignore`
   - `*` — qualquer parte de um nome (sem `/`)
   - `?` — um único caractere
   - `**` — qualquer profundidade de pastas
+- 🔐 **Novo:** Suporte ao parâmetro `-Checksum` para exibir o **hash MD5** de arquivos  
+  - Ideal para verificar integridade ou mudanças nos arquivos  
+  - Mostra o hash ao lado do nome de cada arquivo
+- 🛡️ **Modificável:** Possibilidade de alterar o algoritmo para `SHA256` com ajuste simples no código
 
 ---
 
@@ -39,7 +43,6 @@
    ```
 
 ---
-
 
 ## 🛠️ 📄  Suporte a Arquivo `.treeignore`
 
@@ -67,7 +70,6 @@ static/img/**/*.jpg  # Todos os .jpg dentro de static/img e subpastas
 
 ## 🔎 Suporte a Wildcards, Padrões de Ignore (.treeignore)
 
-
 Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para ignorar arquivos e pastas no comando `Show-Tree`:
 
 | Padrão          | Significado                                                | Exemplo prático                                 |
@@ -83,9 +85,6 @@ Abaixo estão os padrões que você pode usar no arquivo `.treeignore` para igno
 | `.git`          | Também ignora o diretório `.git` (equivalente a `.git/`)   | `.git` → ignora repositório Git                  |
 | `*.git`         | Arquivos com extensão `.git` (ou diretórios, dependendo da implementação) | `repo.git` → ignora pasta ou arquivo `repo.git` |
 
-
-
-
 ---
 
 ### 🔹 Modelo ultilizado `.treeignore`
@@ -99,37 +98,11 @@ database.db
 README.md
 ```
 
-## 📂 Exemplo de Saída
-
-
-
 ---
 
-## Observações
+## 📂 Exemplo de Saída
 
-> **PS:** Os comandos apresentados são executados no terminal Linux dentro do `WSL` (Windows Subsystem for Linux) via PowerShell no Windows.
-
-> 🗂️ **Importante:** Esses comandos servem apenas para **organizar e visualizar a estrutura de arquivos e pastas no terminal**, dando ao usuário uma noção do que está sendo manipulado.
-
-> ⚙️ A funcionalidade principal e os objetivos de organização e exibição são realizados pela aplicação **Show-Tree**, executada no PowerShell. Os comandos mostrados aqui são apenas auxiliares para facilitar a visualização.
-
-## Com WLS ou bash
-Sem `.treeignore` apenas o comado `ls -1AfA`:
-```
-ls -1AfA
-```
-```
-.git
-.treeignore
-app.py
-models.py
-README.md
-requirements.txt
-static
-templates
-```
-## Com PowerShell
-Com `.treeignore` corretamente configurado:
+### ✅ Sem `-Checksum`
 
 ```
 ├── app.py
@@ -149,6 +122,25 @@ Com `.treeignore` corretamente configurado:
     └── database.db
 ```
 
+### ✅ Com `-Checksum`
+
+```
+├── 019109307b8d4570bcff77dff4317487  app.py
+├── 29fd9e07a4908e7a2994b525fa09eed0  models.py
+├── 7de7c781d9881a461fa0c01cae1e0691  requirements.txt
+├── static/
+│   ├── 4c3be7136a869413052b19e15695f5b0  login.css
+│   ├── dd2786d5f8b22ab8abe4c007e548ad0b  style.css
+│   └── img/
+│       └── e554b7e7a6f133508ed0e4d4a2cdadd3  fundo.jpg
+├── templates/
+│   ├── abd3d1925da7c6c045be7af550ff051a  editar.html
+│   ├── c90811b752da6ac242677954e381daf6  index.html
+│   ├── 7b1a69e3d98693d72ada5b271bdb6850  login.html
+│   └── a8f64e78749e275c489dc9f40ab7800c  registros.html
+└── instance/
+    └── 94a84716621b7cb8ea79be5f3ef01257  database.db
+```
 
 ---
 
@@ -159,14 +151,48 @@ Com `.treeignore` corretamente configurado:
 ```powershell
 Show-Tree
 ```
+
 - Mostra a estrutura de arquivos e pastas a partir do diretório atual.
 - Respeita as regras do arquivo `.treeignore` se existir na raiz do projeto.
+
 ---
+
+### 📌 Modo com `-Checksum`:
+
+```powershell
+Show-Tree -Checksum
+```
+
+- Exibe a estrutura com o hash MD5 dos arquivos
+- Útil para verificar integridade e alterações em arquivos
+
+---
+
+### 🔁 Alterando para SHA256
+
+Por padrão, a função usa MD5. Se quiser usar SHA256 (mais seguro), basta alterar **uma linha** da função `Show-Tree`:
+
+```powershell
+# De:
+(Get-FileHash -Algorithm MD5 -Path $FilePath).Hash
+
+# Para:
+(Get-FileHash -Algorithm SHA256 -Path $FilePath).Hash
+```
+
+Assim, o parâmetro `-Checksum` exibirá hashes SHA256 em vez de MD5.
+
+---
+
+### 💾 Salvar estrutura no README.md
+
 Para salvar a árvore diretamente no `README.md` com blocos de código formatados:
 
 ```powershell
 '```' | Out-File README.md; Show-Tree >> README.md; '```' >> README.md
 ```
+
+---
 
 ## 🤝 Contribuições
 
